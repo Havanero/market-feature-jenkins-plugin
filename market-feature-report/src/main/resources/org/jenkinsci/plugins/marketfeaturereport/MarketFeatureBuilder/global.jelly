@@ -1,5 +1,6 @@
 <?jelly escape-by-default='true'?>
-<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+<j:jelly xmlns:j="jelly:core"
+         xmlns:f="/lib/form">
   <!--
     This Jelly script is used to produce the global configuration option.
 
@@ -12,10 +13,19 @@
     tags they use. Views are always organized according to its owner class,
     so it should be straightforward to find them.
   -->
-  <f:section title="Hello World Builder">
-    <f:entry title="French" field="useFrench"
-      description="Check if we should say hello in French">
-      <f:checkbox />
+  <f:section title="Market Features - Report From Python Plugin">
+    <!--<f:entry title="French" field="useFrench"-->
+      <!--description="Check if we should say hello in French">-->
+      <!--<f:checkbox />-->
+    <!--</f:entry>-->
+    <f:entry field="labelText" title="market-features.html location">
+      <f:textbox />
     </f:entry>
+
+    <f:advanced title="Advanced Settings">
+      <f:entry field="tabColour" title="Tab colour">
+        <f:select />
+      </f:entry>
+    </f:advanced>
   </f:section>
 </j:jelly>
