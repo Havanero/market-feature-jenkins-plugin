@@ -21,10 +21,11 @@ public class MarketFeatureBuildAction implements Action,
     private ArrayList<ArrayList<String>> fileError;
 
     public MarketFeatureBuildAction(final AbstractBuild<?, ?> build,
-            final ArrayList<String> files) throws InterruptedException,
+            final String files) throws InterruptedException,
             ParserConfigurationException, SAXException, URISyntaxException,
             IOException {
         this.build = build;
+        this.report = new Report();
     }
 
     @Override public String getIconFileName() {
