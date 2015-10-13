@@ -21,7 +21,7 @@ public class MarketFeatureProjectAction implements Action, Serializable {
     }
 
     @Override public String getDisplayName() {
-        return null;
+        return "display name from method";
     }
 
     @Override public String getUrlName() {
@@ -40,6 +40,7 @@ public class MarketFeatureProjectAction implements Action, Serializable {
         AbstractBuild<?, ?> build = getLastFinishedBuild();
         // When the project has not had a build yet, build is null
         if (build == null) {
+            System.out.println("returning null");
             return null;
         }
         MarketFeatureBuildAction resultAction =

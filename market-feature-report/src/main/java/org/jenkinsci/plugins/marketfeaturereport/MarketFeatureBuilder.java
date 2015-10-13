@@ -1,4 +1,5 @@
 package org.jenkinsci.plugins.marketfeaturereport;
+
 import hudson.Launcher;
 import hudson.Extension;
 import hudson.model.*;
@@ -11,19 +12,22 @@ import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.QueryParameter;
 
 import javax.servlet.ServletException;
+import javax.sound.midi.Soundbank;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import org.apache.tools.ant.Project;
 import org.xml.sax.SAXException;
 
 /**
-        * Post build tasks added as {@link Recorder}.
-        *
-        * @author Caleb Carvalho
-        */
+ * Post build tasks added as {@link Recorder}.
+ *
+ * @author Caleb Carvalho
+ */
 public class MarketFeatureBuilder extends Recorder {
 
     private final String name;
@@ -47,40 +51,37 @@ public class MarketFeatureBuilder extends Recorder {
     }
 
     @Override
-    public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener)
+    public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener)
             throws IOException {
 
+        ArrayList<String> filesToParse = new ArrayList<String>();
 
         listener.getLogger().println("Performing Post build task..." + name);
         File f = new File(name);
         if (f.exists()) {
             listener.getLogger().println("Found file under " + f.getPath());
         }
-//        FileSet fileSet = new FileSet();
-//        File workspace = build.getArtifactsDir();
-//        fileSet.setDir(workspace);
-//        fileSet.setIncludes(name);
-//        Project antProject = new Project();
-//        fileSet.setProject(antProject);
-//        String[] tmpFiles
-//                = fileSet.getDirectoryScanner(antProject)
-//                .getIncludedFiles();
+
+        FileSet fileSet = new FileSet();
+        System.out.println(build.getResult());
+        File workspace = build.getArtifactsDir();
+        fileSet.setDir(workspace);
+        fileSet.setIncludes(name);
+        Project antProject = new Project();
+        fileSet.setProject(antProject);
+        String[] tmpFiles;
+        tmpFiles = fileSet.getDirectoryScanner(antProject).getIncludedFiles();
+
+        System.out.println("files archived " + tmpFiles[0]);
 
         try {
-            MarketFeatureBuildAction buildAction = new MarketFeatureBuildAction(build, name);
+
+            MarketFeatureBuildAction buildAction = new MarketFeatureBuildAction(build, tmpFiles[0]);
             build.addAction(buildAction);
 
         } catch (InterruptedException e) {
             e.printStackTrace();
-            return false;
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-            return false;
-        } catch (SAXException e) {
-            e.printStackTrace();
-            return false;
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
+            listener.getLogger().println(e.toString());
             return false;
         }
         return true;
@@ -88,7 +89,7 @@ public class MarketFeatureBuilder extends Recorder {
 
     @Override
     public DescriptorImpl getDescriptor() {
-        return (DescriptorImpl)super.getDescriptor();
+        return (DescriptorImpl) super.getDescriptor();
     }
 
     @Override
@@ -97,14 +98,14 @@ public class MarketFeatureBuilder extends Recorder {
     }
 
     @Extension
-    public static final  class DescriptorImpl extends BuildStepDescriptor<Publisher> {
+    public static final class DescriptorImpl extends BuildStepDescriptor<Publisher> {
 
-        public DescriptorImpl(){
+        public DescriptorImpl() {
             super(MarketFeatureBuilder.class);
             load();
         }
 
-        @Override public boolean isApplicable(Class<? extends AbstractProject> aClass) {
+        @Override public boolean isApplicable(Class<? extends AbstractProject> jobType) {
             return true;
         }
 
