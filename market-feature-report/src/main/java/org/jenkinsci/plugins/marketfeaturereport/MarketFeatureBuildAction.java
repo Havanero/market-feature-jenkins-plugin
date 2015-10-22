@@ -89,11 +89,17 @@ public class MarketFeatureBuildAction implements Action,
             String path = build.getArtifactsDir().getAbsolutePath()
                     + File.separatorChar + currentReport;
 
-            ParserXml parseur = new ParserXml(path);
+            ParseCss parseCss  = new ParseCss();
+//            ParserXml parseur = new ParserXml(path);
+//
+//            String resParse = parseur.parse();
+//            if (resParse.equals("")) {
+//                this.report.addSection(parseur.result());
 
-            String resParse = parseur.parse();
-            if (resParse.equals("")) {
-                this.report.addSection(parseur.result());
+            if (parseCss.parse(path)){
+                System.out.println("Successfully Parse");
+                parseCss.ReadResults();
+                this.report.addSection(parseCss.result());
             } else {
                 ArrayList<String> list = new ArrayList<String>();
                 list.add("#FF0000"); // titleColor
@@ -112,7 +118,7 @@ public class MarketFeatureBuildAction implements Action,
                 list.add(str + File.separatorChar + currentReport);
                 // href build page
 
-                list.add("Cause : " + resParse); // fieldValue
+                list.add("Cause : " + "resParse"); // fieldValue
                 fileError.add(list);
             }
         }
