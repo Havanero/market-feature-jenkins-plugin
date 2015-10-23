@@ -23,19 +23,18 @@
  */
 package org.jenkinsci.plugins.marketfeaturereport;
 
-import hudson.model.Action;
 import hudson.model.AbstractBuild;
-import java.io.File;
-import java.io.IOException;
-
-import java.io.Serializable;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import javax.xml.parsers.ParserConfigurationException;
-
+import hudson.model.Action;
 import org.jenkinsci.plugins.marketfeaturereport.report.Report;
 import org.kohsuke.stapler.StaplerProxy;
 import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 /**
  * Class describing action performed on build page.
@@ -59,20 +58,13 @@ public class MarketFeatureBuildAction implements Action,
     /**
      * Constructor.
      *
-     * @param build
-     *            The current build
-     * @param files
-     *            The current files
-     * @throws InterruptedException
-     *             Interruption
-     * @throws ParserConfigurationException
-     *             Exception in parser configuration
-     * @throws SAXException
-     *             Exception in XML parser
-     * @throws URISyntaxException
-     *             Exception in URL
-     * @throws IOException
-     *             Exception with I/Os
+     * @param build The current build
+     * @param files The current files
+     * @throws InterruptedException         Interruption
+     * @throws ParserConfigurationException Exception in parser configuration
+     * @throws SAXException                 Exception in XML parser
+     * @throws URISyntaxException           Exception in URL
+     * @throws IOException                  Exception with I/Os
      */
     public MarketFeatureBuildAction(final AbstractBuild<?, ?> build,
             final ArrayList<String> files) throws InterruptedException,
@@ -80,7 +72,7 @@ public class MarketFeatureBuildAction implements Action,
             IOException {
         this.build = build;
         this.report = new Report();
-        this.fileError = new ArrayList<ArrayList<String>>();
+        this.fileError = new ArrayList<>();
 
         for (int i = 0; i < files.size(); i++) {
 
@@ -89,25 +81,14 @@ public class MarketFeatureBuildAction implements Action,
             String path = build.getArtifactsDir().getAbsolutePath()
                     + File.separatorChar + currentReport;
 
-            ParseCss parseCss  = new ParseCss();
-//            ParserXml parseur = new ParserXml(path);
-//
-//            String resParse = parseur.parse();
-//            if (resParse.equals("")) {
-//                this.report.addSection(parseur.result());
-            System.out.println(this.build.getModuleRoot().readLink());
-
-            System.out.println("files " + this.build.getProject().getLastSuccessfulBuild().getArtifacts());
-            System.out.println("status " + this.build.getBuildStatusUrl());
-
-            if (parseCss.parse(path)){
-                System.out.println("Successfully Parse");
+            ParseCss parseCss = new ParseCss();
+            if (parseCss.parse(path)) {
                 parseCss.ReadResults();
                 this.report.addSection(parseCss.result());
             } else {
-                ArrayList<String> list = new ArrayList<String>();
+                ArrayList<String> list = new ArrayList<>();
                 list.add("#FF0000"); // titleColor
-                list.add("Parsing File Error"); // fieldName
+                list.add("Market Feature Error"); // fieldName
                 list.add("#000000"); // detailColor
 
                 String str = build.getArtifactsDir().getName();
@@ -121,8 +102,7 @@ public class MarketFeatureBuildAction implements Action,
 
                 list.add(str + File.separatorChar + currentReport);
                 // href build page
-
-                list.add("Cause : " + "resParse"); // fieldValue
+                list.add("Parsing"); // fieldValue
                 fileError.add(list);
             }
         }

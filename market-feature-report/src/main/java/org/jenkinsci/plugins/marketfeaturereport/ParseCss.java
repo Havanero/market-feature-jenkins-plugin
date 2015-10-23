@@ -7,16 +7,17 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class ParseCss {
 
     private LinkedHashMap<String, String> summary_table = new LinkedHashMap<>();
     private LinkedHashMap<String, String> summary_error_table = new LinkedHashMap<>();
+    static Logger LOGGER = Logger.getLogger(ParseCss.class.getName());
     private static Section resultat;
-    private String fileName;
+    private File inputFile;
     private Section section;
     private Table tmpTable;
     private Tr tmpTr;
@@ -36,11 +37,11 @@ public class ParseCss {
         return resultat;
     }
 
-    public Boolean parse(String cssFile) throws IOException {
+    public Boolean parse(String cssFile) {
         try {
-            this.fileName = cssFile;
-            File input = new File(cssFile);
-            Document doc = Jsoup.parse(input, "UTF-8");
+
+            inputFile = new File(cssFile);
+            Document doc = Jsoup.parse(inputFile, "UTF-8");
             content = doc.getElementById("market-feature-header");
             Elements header = content.getElementsByClass("rTableHead");
             Elements failedHeader = content.getElementsByClass("rTableHeadFailed");
@@ -61,8 +62,8 @@ public class ParseCss {
                 ++count_failed;
             }
 
-        } catch (IOException io) {
-            io.printStackTrace();
+        } catch (Exception ex) {
+            LOGGER.warning(ex.getMessage());
             return false;
         }
 
@@ -85,10 +86,6 @@ public class ParseCss {
                 switch (entry.getKey()) {
                     case "Failed":
                         if (Integer.parseInt(entry.getValue()) != 0) {
-                            System.out.println(
-                                    entry.getKey() + "==" + entry.getValue() + " link Error="
-                                            + summary_error_table
-                                            .get(entry.getKey()));
                             tmpTd.setTdValue(entry.getKey());
                             tmpTd.setBgColor("red");
                             tmpTd.setFontColor("white");
@@ -96,14 +93,12 @@ public class ParseCss {
                             tmpTd.setTitle("title1");
                             rowTd.setTdValue(entry.getValue());
                             rowTd.setBgColor("red");
-                            rowTd.setHref("artifact/market_feature.html" + summary_error_table
+                            rowTd.setHref("artifact/" + inputFile.getName() + summary_error_table
                                     .get(entry.getKey()));
                             rowTd.setFontColor("white");
                             rowTd.setFontAttribute("normal");
 
                         } else {
-                            System.out.println(entry.getKey() + "==" + entry.getValue());
-
                             tmpTd.setTdValue(entry.getKey());
                             tmpTd.setBgColor("#65c400");
                             tmpTd.setFontColor("white");
@@ -117,10 +112,6 @@ public class ParseCss {
                         break;
                     case "Errors":
                         if (Integer.parseInt(entry.getValue()) != 0) {
-                            System.out.println(
-                                    entry.getKey() + "==" + entry.getValue() + " link Error="
-                                            + summary_error_table
-                                            .get(entry.getKey()));
                             tmpTd.setTdValue(entry.getKey());
                             tmpTd.setBgColor("red");
                             tmpTd.setFontColor("white");
@@ -128,12 +119,11 @@ public class ParseCss {
                             tmpTd.setTitle("title1");
                             rowTd.setTdValue(entry.getValue());
                             rowTd.setBgColor("red");
-                            rowTd.setHref("artifact/market_feature.html"+summary_error_table
+                            rowTd.setHref("artifact/" + inputFile.getName() + summary_error_table
                                     .get(entry.getKey()));
                             rowTd.setFontColor("white");
                             rowTd.setFontAttribute("normal");
                         } else {
-                            System.out.println(entry.getKey() + "==" + entry.getValue());
                             tmpTd.setTdValue(entry.getKey());
                             tmpTd.setBgColor("#65c400");
                             tmpTd.setFontColor("white");
@@ -148,7 +138,6 @@ public class ParseCss {
                 }
 
             } else {
-                System.out.println(entry.getKey() + "==" + entry.getValue());
                 tmpTd.setTdValue(entry.getKey());
                 tmpTd.setBgColor("#65c400");
                 tmpTd.setFontColor("white");
@@ -166,7 +155,7 @@ public class ParseCss {
             tmpTr.addTd(tmpTd);
             rowTr.addTd(rowTd);
 
-        } //for loop
+        }
         tmpTable.addTr(tmpTr);
         tmpTable.addTr(rowTr);
         section.addObject(tmpTable);

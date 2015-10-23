@@ -18,6 +18,7 @@ public class TestParseHtmlReport {
         System.out.println("Testing..");
         File input = new File(
                 "/home/carvcal/IdeaProjects/plugin-project/market-feature-jenkins-plugin/market-feature-report/work/jobs/MM2/workspace/market_feature_passes.html");
+        System.out.println("just name " + input.getName());
         Document doc = Jsoup.parse(input, "UTF-8");
         Element content = doc.getElementById("market-feature-header");
         System.out.println(content.getElementById("title").text());
