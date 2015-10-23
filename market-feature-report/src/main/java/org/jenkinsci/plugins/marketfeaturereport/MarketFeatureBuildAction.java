@@ -95,6 +95,10 @@ public class MarketFeatureBuildAction implements Action,
 //            String resParse = parseur.parse();
 //            if (resParse.equals("")) {
 //                this.report.addSection(parseur.result());
+            System.out.println(this.build.getModuleRoot().readLink());
+
+            System.out.println("files " + this.build.getProject().getLastSuccessfulBuild().getArtifacts());
+            System.out.println("status " + this.build.getBuildStatusUrl());
 
             if (parseCss.parse(path)){
                 System.out.println("Successfully Parse");

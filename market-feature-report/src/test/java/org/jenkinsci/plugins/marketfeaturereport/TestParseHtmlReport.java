@@ -20,7 +20,7 @@ public class TestParseHtmlReport {
                 "/home/carvcal/IdeaProjects/plugin-project/market-feature-jenkins-plugin/market-feature-report/work/jobs/MM2/workspace/market_feature_passes.html");
         Document doc = Jsoup.parse(input, "UTF-8");
         Element content = doc.getElementById("market-feature-header");
-
+        System.out.println(content.getElementById("title").text());
         Elements header = content.getElementsByClass("rTableHead");
         Elements failedHeader = content.getElementsByClass("rTableHeadFailed");
         Elements rows = content.getElementsByClass("rTableCell");
