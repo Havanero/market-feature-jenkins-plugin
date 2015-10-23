@@ -18,6 +18,6 @@ public class MarketFeatureDesciptor  extends BuildStepDescriptor<Publisher> {
     }
 
     @Override public String getDisplayName() {
-        return "Market Feature Report 1.1";
+        return "Market Features";
     }
 }

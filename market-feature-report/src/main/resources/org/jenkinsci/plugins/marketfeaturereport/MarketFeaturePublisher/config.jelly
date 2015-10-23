@@ -5,8 +5,8 @@
          xmlns:t="/lib/hudson"
          xmlns:f="/lib/form"
          xmlns:u="/util">
-    <f:entry title="Files to parse"
-             description="ex : artifacts/log/*.xml">
+    <f:entry title="File to parse"
+             description="ex : market_feature.html">
         <f:textbox field="name" />
     </f:entry>
     <f:entry
