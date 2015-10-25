@@ -19,8 +19,7 @@ public class TestParseHtmlReport {
 
     @BeforeClass
     public static void setUp(){
-        //typically the file which has been set to archive
-        File input = new File("work/jobs/Maven1/workspace/market_features.html");
+        File input = new File("src/test/java/org/jenkinsci/plugins/marketfeaturereport/market_features.html");
         Document doc = null;
         try {
             doc = Jsoup.parse(input, "UTF-8");
