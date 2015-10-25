@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -8,15 +7,15 @@
     <artifactId>plugin</artifactId>
     <!-- Baseline Jenkins version you use to build and test the plugin. Users must have this version or newer to run. -->
     <version>1.580.1</version>
-    <relativePath/>
+    <relativePath />
   </parent>
   <artifactId>market-feature-report</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>hpi</packaging>
 
-  <name>Market Features</name>
-  <description>Report Python Market Features into Jenkins Plugin</description>
-  <url>https://wiki.jenkins-ci.org/display/JENKINS/TODO+Plugin</url>
+  <name>Market Features Report</name>
+  <description>Report Python Market Features into Jenkins</description>
+  <url>https://wiki.jenkins-ci.org/display/JENKINS/Market+Features+Plugin</url>
   <licenses>
     <license>
       <name>MIT License</name>
@@ -37,20 +36,17 @@
   </build>
   <developers>
     <developer>
-      <id>cubanguy</id>
+      <id>caleb</id>
       <name>Caleb Carvalho</name>
       <email>caleb.carvalho@gmail.com</email>
-      <url>https://github.com/Havanero/market-feature-jenkins-plugin</url>
     </developer>
   </developers>
-
-  <!-- Assuming you want to host on @jenkinsci:
   <scm>
-    <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
-    <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
+    <connection>scm:git:git://github.com/jenkinsci/market-feature-report-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:jenkinsci/market-feature-report-plugin.git</developerConnection>
+    <url>http://github.com/jenkinsci/market-feature-report-plugin</url>
+    <tag>market-feature-report-1.0</tag>
   </scm>
-   -->
   <repositories>
     <repository>
       <id>repo.jenkins-ci.org</id>
