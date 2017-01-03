@@ -38,7 +38,7 @@ public class Report {
      * Initialize the section.
      */
     public Report() {
-    	reportSection = new ArrayList<Section>();
+    	reportSection = new ArrayList<>();
     }
 
     /**
@@ -52,7 +52,7 @@ public class Report {
     }
 
     /**
-     * Assign a section list to the report.
+     * Assign a section list to the report.${from.getReport().getSection()}
      *
      * @param section
      * 		the section list to set

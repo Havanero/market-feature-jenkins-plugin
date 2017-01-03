@@ -7,15 +7,15 @@ xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:p="/lib/hu
 
     <!-- Import library -->
     <!-- <st:include page="/style/buildSummaryCss.jelly" /> -->
-    <link type="text/css" href="${rootURL}/plugin/summary_report/lib/jquery/css/smoothness/jquery-ui-1.8.6.custom.css" rel="stylesheet" />
+    <link type="text/css" href="${rootURL}/plugin/market-feature-report/lib/jquery/css/smoothness/jquery-ui-1.8.6.custom.css" rel="stylesheet" />
 
-    <link type="text/css" href="${rootURL}/plugin/summary_report/css/summary_report.css" rel="stylesheet" />
-    <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery/js/jquery-1.4.2.min.js"></script>
-    <script type="text/javascript" src="${rootURL}/plugin/summary_report/js/summary_report.js"></script>
+    <link type="text/css" href="${rootURL}/plugin/market-feature-report/css/summary_report.css" rel="stylesheet" />
+    <script type="text/javascript" src="${rootURL}/plugin/market-feature-report/lib/jquery/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="${rootURL}/plugin/market-feature-report/js/summary_report.js"></script>
 
-    <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
-    <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery.cookie.js"></script>
-    <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="${rootURL}/plugin/market-feature-report/lib/jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
+    <script type="text/javascript" src="${rootURL}/plugin/market-feature-report/lib/jquery.cookie.js"></script>
+    <script type="text/javascript" src="${rootURL}/plugin/market-feature-report/lib/jquery.tablesorter.min.js"></script>
 	
     <div class="summary_report_project" align="left">
         <h1>Result of build #${from.getLastFinishedBuild().getNumber()}</h1>

@@ -6,7 +6,7 @@
          xmlns:f="/lib/form"
          xmlns:u="/util">
     <f:entry title="File to parse"
-             description="ex : market_feature.html">
+             description="example : market_feature.html">
         <f:textbox field="name" />
     </f:entry>
     <f:entry

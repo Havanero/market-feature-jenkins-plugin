@@ -85,6 +85,6 @@ public class MarketFeaturePublisher extends Recorder {
     }
 
     public BuildStepMonitor getRequiredMonitorService() {
-        return BuildStepMonitor.BUILD;
+        return BuildStepMonitor.NONE;
     }
 }

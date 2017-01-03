@@ -1,3 +1,40 @@
+#header h1 {
+    margin: 1em 3em 1em 1.7em;
+}
+h1 {
+    color: #151515;
+    font-size: 160%;
+    line-height: 1.5em;
+    font-weight: bold;
+}
+
+#header h1 strong {
+    white-space: nowrap;
+}
+
+span.failed {
+    color: #ff0000;
+    padding: 6px;
+}
+span.passed {
+    color: #1d9d01;
+    padding: 6px;
+}
+
+span.ignored {
+    color: #fff600;
+    padding: 6px;
+}
+span.skipped {
+    color: #808080;
+    padding: 6px;
+}
+#header {
+    padding: 2;
+    width: 100%;
+    background-color: #c7ceda;
+}
+
 .summary_report_project h5 {
     text-align: center;
 }

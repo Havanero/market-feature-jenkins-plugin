@@ -48,7 +48,8 @@ public class MarketFeatureProjectAction implements Action, Serializable {
         AbstractBuild<?, ?> lastBuild = project.getLastBuild();
         while (lastBuild != null && (lastBuild.isBuilding()
                 || lastBuild.getAction(MarketFeatureBuildAction.class) == null)) {
-            lastBuild = lastBuild.getPreviousBuild();
+
+            lastBuild = lastBuild.getPreviousCompletedBuild();
         }
         return lastBuild;
     }
