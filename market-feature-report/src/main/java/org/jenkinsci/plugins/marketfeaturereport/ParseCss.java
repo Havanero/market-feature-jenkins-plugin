@@ -52,10 +52,6 @@ public class ParseCss {
             int count_failed = 0, count = 0;
 
             for (Element element : all_fields) {
-//                summary_table.put(element.text(), rows.get(count).text());
-//                ++count;
-                String strNum = element.text().replaceAll("\\D+", "");
-                summary_table.put(element.className(), strNum);
                 if (element.text().contains("total"))
                     summary_error_table.put("link", "#Expand");
                 summary.put(element.className(), element.text());
@@ -77,11 +73,13 @@ public class ParseCss {
     }
 
     void ReadResults() {
+//
+//        section.setSectionName(doc.title());
+//        section.setLine("0");
+//        section.setColumn("0");
+//        section.setFontColor("#65c400");
 
-        section.setSectionName(doc.title());
-        section.setLine("0");
-        section.setColumn("0");
-        section.setFontColor("#65c400");
+        section.setLine(doc.title());
 
         //new stuff
 //        section.setLine("1");
@@ -96,11 +94,6 @@ public class ParseCss {
             section.addObject(field);
 
         }
-        Field field = new Field();
-        field.setCdata(all_fields.text());
-        section.addObject(field);
-
-
         // new stuff ends here
 
 //        tmpTr = new Tr();

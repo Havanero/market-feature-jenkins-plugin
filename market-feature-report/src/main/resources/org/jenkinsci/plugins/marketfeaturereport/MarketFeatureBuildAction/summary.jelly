@@ -32,9 +32,7 @@ xmlns:t="/lib/hudson" xmlns:st="jelly:stapler">
         <td colspan="3">
                 <j:set var="projectname" value="${from.getProjectName()}"/>
                 <j:set var="buildnumber" value="${from.getBuildNumber()}"/>
-
-                
-                <!-- For each file .xml-->s
+                <!-- For each file .xml-->
                  <j:forEach var="a" items="${it.report.section}" indexVar="indexA">
 
                   <h1>

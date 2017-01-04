@@ -12,6 +12,25 @@ h1 {
     white-space: nowrap;
 }
 
+span.failed a {
+    color: #ff0000;
+    padding: 6px;
+}
+span.passed a {
+    color: #1d9d01;
+    padding: 6px;
+}
+
+span.ignored a {
+    color: #fff600;
+    padding: 6px;
+}
+span.skipped a {
+    color: #808080;
+    padding: 6px;
+}
+
+
 span.failed {
     color: #ff0000;
     padding: 6px;
@@ -29,6 +48,7 @@ span.skipped {
     color: #808080;
     padding: 6px;
 }
+
 #header {
     padding: 2;
     width: 100%;
@@ -54,7 +74,7 @@ span.skipped {
 }
 
 .summary_report_field span:first-child:after {
-    content: ":";
+
 }
 
 .summary_report_table {
